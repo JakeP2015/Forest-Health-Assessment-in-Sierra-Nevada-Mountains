@@ -16,19 +16,19 @@ Geographic object-based image analysis that investigates the change in forest he
 
 <p align="center">
 Define study area: <br/>
-<img src="https://i.imgur.com/wy1fHoF.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/wy1fHoF.png" height="80%" width="80%" />
 <br />
 <br />
 Obtain multispectral NAIP imagery and LiDAR data for both timepoints:  <br/>
-<img src="https://i.imgur.com/DoMJ50G.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/2setWfD.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/DoMJ50G.png" height="80%" width="80%" />
+<img src="https://i.imgur.com/2setWfD.png" height="80%" width="80%" />
 <br />
 <br />
 Clip NAIP and LiDAR to study area, generate nDSM in ArcGIS Pro, and project to same coordinate system: <br/>
-<img src="https://i.imgur.com/SlKp2Og.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/SlKp2Og.png" height="80%" width="80%" />
 <br />
 <br />
-Open imagery and LiDAR data in Trimble eCognition, define rulesets for segmentation and classification of each land class: <br/>
+Open imagery and LiDAR data in Trimble eCognition, define rulesets for segmentation and determine land classes to use: <br/>
  
  - Buildings
    
@@ -39,23 +39,27 @@ Open imagery and LiDAR data in Trimble eCognition, define rulesets for segmentat
  - Pavement
    
  - Trees
-<img src="https://i.imgur.com/kV01Uuu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" />
 <br />
 <br />
-Generate interpretation key for each class to understand spectral and spatial properties:  <br/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Once segmented, generate interpretation key for each class to understand spectral and spatial properties:  <br/>
+<img src="" height="80%" width="80%" />
 <br />
 <br />
-Define rules to classify each class based on their spectral and spatial properties :  <br/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Leverage interpretation key to define classification rulesets for each class based on their spectral and spatial properties :  <br/>
+<img src="" height="80%" width="80%" />
 <br />
 <br />
-Break tree classification into 3 separate NDVI values: diseased, stressed, and healthy:  <br/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Break tree classification into 3 separate NDVI values: diseased, stressed, and healthy: NEED TO INCLUDE NDVI RANGES FOR EACH CLASSIFICATION <br/>
+<img src="" height="80%" width="80%" />
 <br />
 <br />
-Determine percent change and perform accuracy assessment:  <br/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Export classified map to ArcGIS and create thematic maps<br/>
+<img src="" height="80%" width="80%" />
+<br />
+<br />
+Calculate total acreage for each class in both timepoints to determine percent change and perform accuracy assessment:  <br/>
+<img src="" height="80%" width="80%" />
 </p>
 
 <!--
