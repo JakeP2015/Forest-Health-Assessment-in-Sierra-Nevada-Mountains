@@ -60,12 +60,4 @@ Calculate total acreage for each class in both timepoints to determine percent c
 <img src="https://i.imgur.com/J62yjW5.png" height="80%" width="80%" />
 </p>
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
+
