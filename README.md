@@ -1,63 +1,117 @@
-# Forest-Health-Assessment-in-Sierra-Nevada-Mountains
-Geographic object-based image analysis that investigates the change in forest health between the years 2018 and 2022. 
+# 🌲 Forest Health Assessment in the Sierra Nevada Mountains (2018–2022)
 
-<h2>Description</h2>
-The results of this analysis address the research question of how forest health has changed from 2018 to 2022 by quantifying the drastic decrease in forest health over the course of 4 years. Specifically, the quantification indicates that there was a significant decrease in forest health which included a 36 percent increase in diseased trees, a 38 percent increase in stressed trees, and a 100 percent decrease in healthy trees. These results are further reinforced by high user’s and producer’s accuracy for the tree class that, for both 2018 and 2022 imagery, were calculated to be 80% and higher. In addition to this, these accuracy results indicate that the segmentation and classification ruleset developed in Trimble eCognition is robust in terms of the forest class. 
-<br />
-<br />
-On the other end of the spectrum were several problems would have been addressed if more time was available. The first problem is that the segmentation was geared towards the spectral, spatial, and textural features of trees, not other land classes. This is further supported by the high user’s and producer’s accuracy for trees and lower accuracy for other classes. The quadtree and multiresolution algorithms are designed with this mindset and therefore result in problems with other classifications that aren’t trees. This is also evident due to the significant class bleed of classes such as houses, pavement, and bare earth. If I had to do this all over again, I would have added another segmentation algorithm and spent more time fine tuning the parameters of the current algorithms that were incorporated into the ruleset. 
-One aspect of this classification that may have led to misleading results is the time at which the multispectral imagery was collected. The 2018 imagery, which was collected in September, coincides with a time of the year that experiences more rainfall and temperatures begin to decrease which equates to healthier trees. The 2022 imagery was collected during July. This month experiences higher temperatures and is relatively dry which can result in significantly lower NDVI values.
-<br />
+This project evaluates changes in forest health over four years (2018 to 2022) using high-resolution **NAIP multispectral imagery** and **LiDAR data** in the **Sierra Nevada Mountains, California**. By leveraging remote sensing and object-based image analysis (OBIA), we quantify vegetation health trends before and after significant wildfire events using ArcGIS Pro and Trimble eCognition.
 
+---
 
-<h2>Software Used</h2>
+## 📍 Project Overview
 
-- <b>ArcGIS Pro</b> 
-- <b>Trimble eCognition</b>
-- <b>Microsoft Excel</b> 
+Forest health monitoring using remote sensing enables efficient detection of stressed and diseased vegetation without the need for intensive field labor. In this project, we:
+- Perform **image segmentation and classification** using OBIA methods.
+- Analyze vegetation health using **NDVI** thresholds and LiDAR-derived **canopy height (nDSM)**.
+- Calculate change in vegetation health over time using **area statistics** and **accuracy assessment**.
 
-<h2>Analysis walk-through:</h2>
+> Study Area: Lassen National Forest near **Lake Almanor**, CA (~0.6 mi²)
 
-<p align="center">
-Define study area: <br/>
-<img src="https://i.imgur.com/wy1fHoF.png" height="80%" width="80%" />
-<br />
-<br />
-Obtain multispectral NAIP imagery and LiDAR data for both timepoints:  <br/>
-<img src="https://i.imgur.com/hDGsmBb.png" height="80%" width="80%" />
-<img src="https://i.imgur.com/vwzBte0.png" height="80%" width="80%" />
-<br />
-<br />
-Clip NAIP and LiDAR to study area, generate nDSM in ArcGIS Pro, and project to same coordinate system: <br/>
-<img src="https://i.imgur.com/SlKp2Og.png" height="80%" width="80%" />
-<br />
-<br />
-Open imagery and LiDAR data in Trimble eCognition and define segmentation ruleset <br/>
- <img src="https://i.imgur.com/1j5gsbH.png" height="80%" width="80%" />
-<br />
-<br />
-Once segmented, generate interpretation key for each class to understand spectral and spatial properties:  <br/>
-- Classes: buildings, bare earth, water, pavement, trees
-<img src="https://i.imgur.com/jliaM1W.png" height="80%" width="80%" />
-<br />
-<br />
-Leverage interpretation key to define classification rulesets for each class based on their spectral and spatial properties :  <br/>
-<img src="https://i.imgur.com/Mb6Vaza.png" height="80%" width="80%" />
-<br />
-<br />
-Break tree classification into 3 separate NDVI values: diseased, stressed, and healthy: <br/>
-<img src="https://i.imgur.com/kVZytGS.png" height="80%" width="80%" />
-<br />
-<br />
-Export classified map to ArcGIS and create thematic maps<br/>
-<img src="https://i.imgur.com/Qt8kImO.png" height="80%" width="80%" />
-<img src="https://i.imgur.com/fpaWrsv.jpeg" height="80%" width="80%" />
-<br />
-<br />
-Calculate total acreage for each class in both timepoints to determine percent change and perform accuracy assessment:  <br/>
-<img src="https://i.imgur.com/rOG3mAK.png" height="80%" width="80%" />
-<img src="https://i.imgur.com/1vW1WYu.png" height="80%" width="80%" />
-<img src="https://i.imgur.com/J62yjW5.png" height="80%" width="80%" />
-</p>
+---
 
+## ❓ Research Questions
+
+1. How has forest health changed between 2018 and 2022?
+2. What is the percent change in healthy, stressed, and diseased trees?
+3. How reliable are the classifications using accuracy metrics?
+4. Can NDVI and LiDAR-derived height data reliably detect post-fire vegetation stress?
+
+---
+
+## 🗂️ Data Sources
+
+| Data Type | Source | Details |
+|----------|--------|---------|
+| **Multispectral Imagery** | USGS Earth Explorer (NAIP) | 0.6m resolution, 4-band (R, G, B, NIR) |
+| **LiDAR Elevation Data** | USGS 3DEP Program | 0.5m resolution; used for DSM, DTM, and nDSM |
+| **Study Boundary** | Manually clipped to overlapping imagery | Southern shore of Lake Almanor, CA |
+
+---
+
+## 🛠️ Tools & Software
+
+- **ArcGIS Pro** – Image preprocessing, geospatial analysis, and mapping
+- **Trimble eCognition** – Object-based image analysis, segmentation, and classification
+- **Excel** – Accuracy assessment, error matrices, and tabular summaries
+- **LASTools** – LiDAR format conversion (LAZ to LAS)
+
+---
+
+## 🔄 Methodology
+
+1. **Data Preparation**
+   - Download NAIP imagery and LiDAR data (2018 and 2022).
+   - Convert LiDAR from `.laz` to `.las`, then derive DSM, DTM, and nDSM.
+
+2. **Image Clipping & Projection**
+   - Align all datasets to a common CRS (NAD 1983 UTM Zone 10N).
+   - Clip imagery to study boundary.
+
+3. **Object-Based Image Analysis (eCognition)**
+   - Segment images using Quadtree and Multiresolution algorithms.
+   - Create classification rules using NDVI thresholds and texture/height features:
+     - Healthy Trees: NDVI > 0.6
+     - Stressed Trees: NDVI 0.2–0.6
+     - Diseased Trees: NDVI < 0.2
+
+4. **Export & Post-Classification**
+   - Export results as shapefiles for analysis in ArcGIS Pro.
+   - Quantify area by class and calculate percent change (2018 vs. 2022).
+   - Perform accuracy assessment using stratified random points and confusion matrices.
+
+---
+
+## 📊 Results Summary
+
+| Class            | 2018 (acres) | 2022 (acres) | % Change |
+|------------------|--------------|--------------|----------|
+| Healthy Trees    | 93.49        | 0            | **-100%** |
+| Stressed Trees   | 230.91       | 320.05       | **+38.6%** |
+| Diseased Trees   | 9.72         | 13.23        | **+36.1%** |
+
+**Key Findings:**
+- Complete loss of healthy trees from 2018 to 2022.
+- Significant increase in both stressed and diseased vegetation.
+- Results likely impacted by the 2018 *Camp Fire*, California’s deadliest wildfire to date.
+
+---
+
+## ✅ Accuracy Assessment
+
+| Metric           | 2018 (%) | 2022 (%) |
+|------------------|----------|----------|
+| Overall Accuracy | 75.6     | 70.7     |
+| Producer's Accuracy (Trees) | ≥ 80%    | ≥ 80%    |
+| User's Accuracy (Trees)     | ≥ 80%    | ≥ 80%    |
+
+> Classification was most robust for tree health classes. Lower accuracy occurred for manmade features (buildings, pavement).
+
+---
+
+## 🗺️ Visuals
+
+Add the following maps and figures in the `/figures/` directory:
+
+- **Study Area Map**  
+  `figures/study_area_map.png`
+
+- **Classified Forest Health Maps**  
+  `figures/classified_2018.png`  
+  `figures/classified_2022.png`
+
+- **NDVI Range Table**  
+  `figures/ndvi_thresholds.png`
+
+- **Workflow Diagram**  
+  `figures/processing_workflow.png`
+
+---
+
+## 📁 Repo Structure
 
