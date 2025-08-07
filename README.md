@@ -99,11 +99,11 @@ Forest health monitoring using remote sensing enables efficient detection of str
 Add the following maps and figures in the `/figures/` directory:
 
 - **Study Area Map**  
-  `figures/study_area_map.png`
+  ![A cartoon dinosaur wearing a party hat](https://i.imgur.com/fejzYEA.jpeg)
 
 - **Classified Forest Health Maps**  
-  `figures/classified_2018.png`  
-  `figures/classified_2022.png`
+  ![2018 Classified Forest Health Map](https://i.imgur.com/iukhq4Z.jpeg)
+need to add 2022 map
 
 - **NDVI Range Table**  
   `figures/ndvi_thresholds.png`
